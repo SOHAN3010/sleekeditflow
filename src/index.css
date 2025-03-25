@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,69 +36,87 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
   * {
     @apply border-border;
+    font-family: 'Inter', sans-serif;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-editor-bg text-editor-text;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Custom scrollbar for timeline */
+  .timeline-scroll::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  .timeline-scroll::-webkit-scrollbar-track {
+    @apply bg-editor-dark;
+    border-radius: 3px;
+  }
+
+  .timeline-scroll::-webkit-scrollbar-thumb {
+    @apply bg-editor-border;
+    border-radius: 3px;
+  }
+
+  .timeline-scroll::-webkit-scrollbar-thumb:hover {
+    @apply bg-editor-hover;
+  }
+
+  /* Glass panel effect */
+  .glass-panel {
+    @apply bg-editor-panel/90 backdrop-blur-md border border-editor-border;
+  }
+
+  /* Timeline track */
+  .timeline-track {
+    @apply h-16 bg-editor-dark border-t border-b border-editor-border relative;
+  }
+
+  /* Timeline clip */
+  .timeline-clip {
+    @apply absolute h-full bg-editor-panel border border-editor-border rounded-sm flex items-center justify-center overflow-hidden cursor-pointer transition-all duration-150;
+  }
+
+  .timeline-clip:hover {
+    @apply border-editor-accent;
+  }
+
+  /* Feature card */
+  .feature-card {
+    @apply p-4 rounded-md glass-panel hover:border-editor-accent/80 cursor-pointer transition-all duration-200;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-editor-accent hover:bg-editor-accent-hover text-white px-4 py-2 rounded-md transition-all duration-200;
+  }
+
+  .btn-secondary {
+    @apply bg-editor-panel hover:bg-editor-hover text-white px-4 py-2 rounded-md transition-all duration-200;
+  }
+
+  .btn-icon {
+    @apply p-2 rounded-md text-editor-text-muted hover:text-editor-text hover:bg-editor-hover transition-all duration-200;
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    @apply transition-all duration-200 hover:text-editor-accent;
+  }
+
+  /* Custom tooltip */
+  .custom-tooltip {
+    @apply absolute opacity-0 invisible bg-editor-dark text-editor-text text-xs py-1 px-2 rounded shadow-lg transition-all duration-200 z-10;
+  }
+
+  .tooltip-trigger:hover .custom-tooltip {
+    @apply opacity-100 visible;
   }
 }
