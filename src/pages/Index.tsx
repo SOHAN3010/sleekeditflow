@@ -5,7 +5,7 @@ import VideoPreview from '@/components/VideoPreview';
 import Timeline from '@/components/Timeline';
 import Sidebar from '@/components/Sidebar';
 import ImportDialog from '@/components/ImportDialog';
-import { toast } from "@/components/ui/sonner";
+import { toast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [hasContent, setHasContent] = useState(false);
